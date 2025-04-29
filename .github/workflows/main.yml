@@ -18,27 +18,14 @@ jobs:
         with:
           python-version: '3.11'
 
-      - name: Install dependencies
-        run: |
-          if exist requirements.txt (
-            pip install -r requirements.txt
-          )
-          pip install pyinstaller
-
-      - name: Detect main script
-        id: detect
-        run: |
-          for %%f in (*.py) do (
-            echo "ENTRY_FILE=%%f" >> %GITHUB_ENV%
-            goto done
-          )
-          :done
+      - name: Install PyInstaller
+        run: pip install pyinstaller
 
       - name: Build EXE
-        run: pyinstaller --onefile --noconsole "%ENTRY_FILE%"
+        run: pyinstaller --onefile --noconsole saibo_love.py
 
       - name: Upload EXE Artifact
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v4   # ✅ 改成 v4！
         with:
-          name: built-exe
-          path: dist\*.exe
+          name: love-matcher-exe
+          path: dist/saibo_love.exe
