@@ -25,7 +25,7 @@ jobs:
         run: pyinstaller --onefile --noconsole saibo_love.py
 
       - name: Upload EXE Artifact
-        uses: actions/upload-artifact@v3
+        uses: actions/upload-artifact@v4
         with:
           name: love-matcher-exe
           path: dist/saibo_love.exe
